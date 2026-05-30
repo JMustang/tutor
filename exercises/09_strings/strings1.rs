@@ -1,6 +1,7 @@
-// TODO: Fix the compiler error without changing the function signature.
+// TODO: Corrija o erro de compilação sem alterar a assinatura da função.
 fn current_favorite_color() -> String {
-    "blue"
+    let color = "blue";
+    color.to_string()
 }
 
 fn main() {
