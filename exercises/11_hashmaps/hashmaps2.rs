@@ -1,12 +1,12 @@
-// We're collecting different fruits to bake a delicious fruit cake. For this,
-// we have a basket, which we'll represent in the form of a hash map. The key
-// represents the name of each fruit we collect and the value represents how
-// many of that particular fruit we have collected. Three types of fruits -
-// Apple (4), Mango (2) and Lychee (5) are already in the basket hash map. You
-// must add fruit to the basket so that there is at least one of each kind and
-// more than 11 in total - we have a lot of mouths to feed. You are not allowed
-// to insert any more of the fruits that are already in the basket (Apple,
-// Mango, and Lychee).
+// Estamos coletando diferentes frutas para assar um delicioso bolo de frutas. Para isso,
+// temos uma cesta, que representaremos na forma de um mapa hash. A chave
+// representa o nome de cada fruta que coletamos e o valor representa quantas
+// frutas específicas coletamos. Três tipos de frutas -
+// Maçã (4), Manga (2) e Lichia (5) já estão no mapa hash da cesta. Você
+// deve adicionar frutas à cesta para que haja pelo menos uma de cada tipo e
+// mais de 11 no total - temos muitas bocas para alimentar. Você não pode
+// inserir mais nenhuma das frutas que já estão na cesta (Maçã,
+// Manga e Lichia).
 
 use std::collections::HashMap;
 
@@ -29,9 +29,12 @@ fn fruit_basket(basket: &mut HashMap<Fruit, u32>) {
     ];
 
     for fruit in fruit_kinds {
-        // TODO: Insert new fruits if they are not already present in the
-        // basket. Note that you are not allowed to put any type of fruit that's
-        // already present!
+        // TODO: Insira novas frutas se elas ainda não estiverem presentes na
+        // TODO: cesta. Observe que não é permitido colocar nenhum tipo de fruta que já esteja
+        // TODO: presente!
+        if !basket.contains_key(&fruit) {
+            basket.insert(fruit, 1);
+        }
     }
 }
 

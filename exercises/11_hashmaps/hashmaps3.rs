@@ -1,14 +1,12 @@
-// A list of scores (one per line) of a soccer match is given. Each line is of
-// the form "<team_1_name>,<team_2_name>,<team_1_goals>,<team_2_goals>"
-// Example: "England,France,4,2" (England scored 4 goals, France 2).
-//
-// You have to build a scores table containing the name of the team, the total
-// number of goals the team scored, and the total number of goals the team
-// conceded.
+// É fornecida uma lista de placares (um por linha) de uma partida de futebol.
+// Cada linha tem o formato "<nome_do_time_1>,<nome_do_time_2>,<gols_do_time_1>,<gols_do_time_2>"
+// Exemplo: "Inglaterra,França,4,2" (Inglaterra marcou 4 gols, França 2).
+// Você deve construir uma tabela de placares contendo o nome do time,
+//o total de gols marcados e o total de gols sofridos.
 
 use std::collections::HashMap;
 
-// A structure to store the goal details of a team.
+// Uma estrutura para armazenar os detalhes dos objetivos de uma equipe.
 #[derive(Default)]
 struct TeamScores {
     goals_scored: u8,
@@ -16,21 +14,31 @@ struct TeamScores {
 }
 
 fn build_scores_table(results: &str) -> HashMap<&str, TeamScores> {
-    // The name of the team is the key and its associated struct is the value.
+    // O nome da equipe é a chave e sua estrutura associada é o valor.
     let mut scores = HashMap::<&str, TeamScores>::new();
 
     for line in results.lines() {
         let mut split_iterator = line.split(',');
-        // NOTE: We use `unwrap` because we didn't deal with error handling yet.
+        // NOTE: Usamos `unwrap` porque ainda não lidamos com o tratamento de erros.
         let team_1_name = split_iterator.next().unwrap();
         let team_2_name = split_iterator.next().unwrap();
         let team_1_score: u8 = split_iterator.next().unwrap().parse().unwrap();
         let team_2_score: u8 = split_iterator.next().unwrap().parse().unwrap();
 
-        // TODO: Populate the scores table with the extracted details.
-        // Keep in mind that goals scored by team 1 will be the number of goals
-        // conceded by team 2. Similarly, goals scored by team 2 will be the
-        // number of goals conceded by team 1.
+        // TODO: Preencha a tabela de pontuação com os detalhes extraídos.
+        // TODO: Lembre-se de que os gols marcados pelo time 1 serão o número de gols
+        // TODO: sofridos pelo time 2. Da mesma forma, os gols marcados pelo time 2 serão o
+        // TODO: número de gols sofridos pelo time 1.
+
+        // Time 1
+        let team_1_entry = scores.entry(team_1_name).or_default();
+        team_1_entry.goals_scored += team_1_score;
+        team_1_entry.goals_conceded += team_2_score;
+
+        // TIme 2
+        let team_2_entry = scores.entry(team_2_name).or_default();
+        team_2_entry.goals_scored += team_2_score;
+        team_2_entry.goals_conceded += team_1_score;
     }
 
     scores
@@ -54,9 +62,11 @@ England,Spain,1,0";
     fn build_scores() {
         let scores = build_scores_table(RESULTS);
 
-        assert!(["England", "France", "Germany", "Italy", "Poland", "Spain"]
-            .into_iter()
-            .all(|team_name| scores.contains_key(team_name)));
+        assert!(
+            ["England", "France", "Germany", "Italy", "Poland", "Spain"]
+                .into_iter()
+                .all(|team_name| scores.contains_key(team_name))
+        );
     }
 
     #[test]
