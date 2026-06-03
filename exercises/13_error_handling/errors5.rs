@@ -1,16 +1,14 @@
-// This exercise is an altered version of the `errors4` exercise. It uses some
-// concepts that we won't get to until later in the course, like `Box` and the
-// `From` trait. It's not important to understand them in detail right now, but
-// you can read ahead if you like. For now, think of the `Box<dyn ???>` type as
-// an "I want anything that does ???" type.
-//
-// In short, this particular use case for boxes is for when you want to own a
-// value and you care only that it is a type which implements a particular
-// trait. To do so, the `Box` is declared as of type `Box<dyn Trait>` where
-// `Trait` is the trait the compiler looks for on any value used in that
-// context. For this exercise, that context is the potential errors which
-// can be returned in a `Result`.
-
+// Este exercício é uma versão alterada do exercício `errors4`. Ele usa alguns
+// conceitos que só abordaremos mais adiante no curso, como `Box` e a
+// trait `From`. Não é importante entendê-los em detalhes agora, mas
+// você pode ler adiante se quiser. Por enquanto, pense no tipo `Box<dyn ???>` como
+// um tipo "Eu quero qualquer coisa que faça ???".
+// Resumidamente, este caso de uso específico para boxes é para quando você quer possuir um
+// valor e só se importa que ele seja um tipo que implemente uma trait específica.
+// Para isso, o `Box` é declarado como do tipo `Box<dyn Trait>`, onde
+// `Trait` é a trait que o compilador procura em qualquer valor usado nesse
+// contexto. Para este exercício, esse contexto são os erros potenciais que
+// podem ser retornados em um `Result`.
 use std::error::Error;
 use std::fmt;
 
@@ -20,7 +18,7 @@ enum CreationError {
     Zero,
 }
 
-// This is required so that `CreationError` can implement `Error`.
+// Isso é necessário para que `CreationError` possa implementar `Error`.
 impl fmt::Display for CreationError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let description = match *self {
@@ -46,9 +44,9 @@ impl PositiveNonzeroInteger {
     }
 }
 
-// TODO: Add the correct return type `Result<(), Box<dyn ???>>`. What can we
-// use to describe both errors? Is there a trait which both errors implement?
-fn main() {
+// TODO: Adicionar o tipo de retorno correto `Result<(), Box<dyn Error>>`.
+// TODO: O que podemos usar para descrever ambos os erros? Existe alguma trait que ambos os erros implementam?
+fn main() -> Result<(), Box<dyn std::error::Error>> {
     let pretend_user_input = "42";
     let x: i64 = pretend_user_input.parse()?;
     println!("output={:?}", PositiveNonzeroInteger::new(x)?);

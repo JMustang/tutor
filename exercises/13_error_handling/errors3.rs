@@ -1,10 +1,9 @@
-// This is a program that is trying to use a completed version of the
-// `total_cost` function from the previous exercise. It's not working though!
-// Why not? What should we do to fix it?
-
+// Este é um programa que está tentando usar uma versão completa da função `total_cost` do exercício anterior.
+// Não está funcionando!
+// Por quê? O que devemos fazer para corrigir isso?
 use std::num::ParseIntError;
 
-// Don't change this function.
+// Não altere essa função.
 fn total_cost(item_quantity: &str) -> Result<i32, ParseIntError> {
     let processing_fee = 1;
     let cost_per_item = 5;
@@ -13,13 +12,13 @@ fn total_cost(item_quantity: &str) -> Result<i32, ParseIntError> {
     Ok(qty * cost_per_item + processing_fee)
 }
 
-// TODO: Fix the compiler error by changing the signature and body of the
+// TODO: Corrija o erro de compilação alterando a assinatura e o corpo do
 // `main` function.
-fn main() {
+fn main() -> Result<(), ParseIntError> {
     let mut tokens = 100;
     let pretend_user_input = "8";
 
-    // Don't change this line.
+    // Não mude essa linha.
     let cost = total_cost(pretend_user_input)?;
 
     if cost > tokens {
@@ -28,4 +27,5 @@ fn main() {
         tokens -= cost;
         println!("You now have {tokens} tokens.");
     }
+    Ok(())
 }

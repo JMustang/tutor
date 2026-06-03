@@ -1,8 +1,8 @@
-// Using catch-all error types like `Box<dyn Error>` isn't recommended for
-// library code where callers might want to make decisions based on the error
-// content instead of printing it out or propagating it further. Here, we define
-// a custom error type to make it possible for callers to decide what to do next
-// when our function returns an error.
+// O uso de tipos de erro genéricos como `Box<dyn Error>` não é recomendado para
+// código de biblioteca onde os chamadores podem querer tomar decisões com base no erro
+// conteúdo em vez de imprimi-lo ou propagá-lo. Aqui, definimos
+// um tipo de erro personalizado para permitir que os chamadores decidam o que fazer em seguida
+// quando nossa função retornar um erro.
 
 use std::num::ParseIntError;
 
@@ -12,7 +12,7 @@ enum CreationError {
     Zero,
 }
 
-// A custom error type that we will be using in `PositiveNonzeroInteger::parse`.
+// Um tipo de erro personalizado que usaremos em `PositiveNozeroInteger::parse`.
 #[derive(PartialEq, Debug)]
 enum ParsePosNonzeroError {
     Creation(CreationError),
@@ -24,8 +24,11 @@ impl ParsePosNonzeroError {
         Self::Creation(err)
     }
 
-    // TODO: Add another error conversion function here.
-    // fn from_parse_int(???) -> Self { ??? }
+    // TODO: Adicionar outra função de conversão de erros aqui.
+    //TODO: fn from_parse_int(???) -> Self { ??? }
+    fn from_parse_int(err: ParseIntError) -> Self {
+        Self::ParseInt(err)
+    }
 }
 
 #[derive(PartialEq, Debug)]
@@ -41,9 +44,9 @@ impl PositiveNonzeroInteger {
     }
 
     fn parse(s: &str) -> Result<Self, ParsePosNonzeroError> {
-        // TODO: change this to return an appropriate error instead of panicking
-        // when `parse()` returns an error.
-        let x: i64 = s.parse().unwrap();
+        // TODO: alterar isso para retornar um erro apropriado em vez de causar pânico
+        //TODO: quando `parse()` retornar um erro.
+        let x: i64 = s.parse().map_err(ParsePosNonzeroError::from_parse_int)?;
         Self::new(x).map_err(ParsePosNonzeroError::from_creation)
     }
 }

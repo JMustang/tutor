@@ -1,8 +1,8 @@
 # Error handling
 
-Most errors aren't serious enough to require the program to stop entirely.
-Sometimes, when a function fails, it's for a reason that you can easily interpret and respond to.
-For example, if you try to open a file and that operation fails because the file doesn't exist, you might want to create the file instead of terminating the process.
+A maioria dos erros não é grave o suficiente para exigir que o programa pare completamente.
+Às vezes, quando uma função falha, é por um motivo que você pode interpretar e ao qual pode responder facilmente.
+Por exemplo, se você tentar abrir um arquivo e essa operação falhar porque o arquivo não existe, você pode querer criar o arquivo em vez de encerrar o processo.
 
 ## Further information
 

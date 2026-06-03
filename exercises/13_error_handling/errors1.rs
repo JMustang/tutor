@@ -1,15 +1,15 @@
-// TODO: This function refuses to generate text to be printed on a nametag if
-// you pass it an empty string. It'd be nicer if it explained what the problem
-// was instead of just returning `None`. Thankfully, Rust has a similar
-// construct to `Option` that can be used to express error conditions. Change
-// the function signature and body to return `Result<String, String>` instead
-// of `Option<String>`.
-fn generate_nametag_text(name: String) -> Option<String> {
+// TODO: Esta função se recusa a gerar texto para ser impresso em uma etiqueta de identificação se
+// TODO: você passar uma string vazia. Seria melhor se ela explicasse qual é o problema
+// TODO: em vez de apenas retornar `None`. Felizmente, Rust tem uma construção similar
+// TODO: a `Option` que pode ser usada para expressar condições de erro. Altere
+// TODO: a assinatura e o corpo da função para retornar `Result<String, String>` em vez de
+// TODO: `Option<String>`.
+fn generate_nametag_text(name: String) -> Result<String, String> {
     if name.is_empty() {
-        // Empty names aren't allowed
-        None
+        // Nomes vazios não são permitidos.
+        Err("Empty names aren't allowed".to_string())
     } else {
-        Some(format!("Hi! My name is {name}"))
+        Ok(format!("Hi! My name is {name}"))
     }
 }
 
