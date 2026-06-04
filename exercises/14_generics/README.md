@@ -1,9 +1,10 @@
 # Generics
 
-Generics is the topic of generalizing types and functionalities to broader cases.
-This is extremely useful for reducing code duplication in many ways, but can call for some rather involved syntax.
-Namely, being generic requires taking great care to specify over which types a generic type is actually considered valid.
-The simplest and most common use of generics is for type parameters.
+Generics é o tópico de generalizar tipos e funcionalidades para casos mais amplos.
+Isso é extremamente útil para reduzir a duplicação de código de várias maneiras, mas pode exigir uma sintaxe bastante complexa.
+Especificamente, ser genérico requer muito cuidado ao especificar sobre quais tipos um tipo genérico é realmente considerado válido.
+
+O uso mais simples e comum de genéricos é para parâmetros de tipo.
 
 ## Further information
 
