@@ -1,9 +1,9 @@
-// Lifetimes are also needed when structs hold references.
+// Tempos de vida também são necessários quando structs mantêm referências.
 
-// TODO: Fix the compiler errors about the struct.
-struct Book {
-    author: &str,
-    title: &str,
+// TODO: Corrigir os erros de compilação relacionados à struct.
+struct Book<'a> {
+    author: &'a str,
+    title: &'a str,
 }
 
 fn main() {

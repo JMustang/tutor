@@ -1,20 +1,15 @@
 # Lifetimes
 
-Lifetimes tell the compiler how to check whether references live long
-enough to be valid in any given situation. For example lifetimes say
-"make sure parameter 'a' lives as long as parameter 'b' so that the return
-value is valid".
+Os tempos de vida (lifetimes) informam ao compilador como verificar se as referências têm tempo de vida suficiente para serem válidas em qualquer situação. Por exemplo, os tempos de vida dizem:
+"certifique-se de que o parâmetro 'a' tenha o mesmo tempo de vida que o parâmetro 'b' para que o valor de retorno seja válido".
 
-They are only necessary on borrows, i.e. references,
-since copied parameters or moves are owned in their scope and cannot
-be referenced outside. Lifetimes mean that calling code of e.g. functions
-can be checked to make sure their arguments are valid. Lifetimes are
-restrictive of their callers.
+Eles são necessários apenas em empréstimos (borrows), ou seja, referências,
+já que parâmetros copiados ou movimentações pertencem ao seu escopo e não podem ser referenciados fora dele. Os tempos de vida permitem que o código que chama funções, por exemplo, seja verificado para garantir que seus argumentos sejam válidos. Os tempos de vida são restritivos para quem os chama.
 
-If you'd like to learn more about lifetime annotations, the
-[lifetimekata](https://tfpk.github.io/lifetimekata/) project
-has a similar style of exercises to Rustlings, but is all about
-learning to write lifetime annotations.
+Se você quiser saber mais sobre anotações de tempo de vida, consulte a documentação.
+[lifetimekata](https://tfpk.github.io/lifetimekata/) O projeto
+tem um estilo de exercícios semelhante ao Rustlings, mas é totalmente voltado para
+aprender a escrever anotações ao longo da vida.
 
 ## Further information
 
