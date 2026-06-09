@@ -1,6 +1,6 @@
 # Tests
 
-Going out of order from the book to cover tests -- many of the following exercises will ask you to make tests pass!
+A ordem dos exercícios, seguindo a ordem do livro, visa atender às provas — muitos dos exercícios a seguir exigirão que você faça as provas passarem!
 
 ## Further information
 
