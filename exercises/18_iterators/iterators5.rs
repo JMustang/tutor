@@ -1,8 +1,8 @@
-// Let's define a simple model to track Rustlings' exercise progress. Progress
-// will be modelled using a hash map. The name of the exercise is the key and
-// the progress is the value. Two counting functions were created to count the
-// number of exercises with a given progress. Recreate this counting
-// functionality using iterators. Try to not use imperative loops (for/while).
+// Vamos definir um modelo simples para acompanhar o progresso dos exercícios do Rustlings. O progresso
+// será modelado usando um mapa hash. O nome do exercício é a chave e
+// o progresso é o valor. Duas funções de contagem foram criadas para contar o
+// número de exercícios com um determinado progresso. Recrie essa funcionalidade de contagem
+// usando iteradores. Tente não usar loops imperativos (for/while).
 
 use std::collections::HashMap;
 
@@ -23,11 +23,11 @@ fn count_for(map: &HashMap<String, Progress>, value: Progress) -> usize {
     count
 }
 
-// TODO: Implement the functionality of `count_for` but with an iterator instead
-// of a `for` loop.
+// TODO: Implementar a funcionalidade de `count_for`, mas com um iterador em vez de um loop `for`.
 fn count_iterator(map: &HashMap<String, Progress>, value: Progress) -> usize {
-    // `map` is a hash map with `String` keys and `Progress` values.
+    // `map` é um mapa hash com chaves do tipo `String` e valores do tipo `Progress`.
     // map = { "variables1": Complete, "from_str": None, … }
+    map.values().filter(|&val| *val == value).count()
 }
 
 fn count_collection_for(collection: &[HashMap<String, Progress>], value: Progress) -> usize {
@@ -42,12 +42,17 @@ fn count_collection_for(collection: &[HashMap<String, Progress>], value: Progres
     count
 }
 
-// TODO: Implement the functionality of `count_collection_for` but with an
-// iterator instead of a `for` loop.
+// TODO: Implementar a funcionalidade de `count_collection_for`, mas com um
+// TODO: iterador em vez de um loop `for`.
 fn count_collection_iterator(collection: &[HashMap<String, Progress>], value: Progress) -> usize {
-    // `collection` is a slice of hash maps.
+    // `collection` é uma fatia de mapas de hash.
     // collection = [{ "variables1": Complete, "from_str": None, … },
-    //               { "variables2": Complete, … }, … ]
+    // { "variables2": Complete, … }, … ]
+    collection
+        .iter()
+        .flat_map(|map| map.values())
+        .filter(|&val| *val == value)
+        .count()
 }
 
 fn main() {

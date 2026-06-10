@@ -1,15 +1,15 @@
 fn factorial(num: u64) -> u64 {
-    // TODO: Complete this function to return the factorial of `num` which is
-    // defined as `1 * 2 * 3 * … * num`.
-    // https://en.wikipedia.org/wiki/Factorial
-    //
-    // Do not use:
-    // - early returns (using the `return` keyword explicitly)
-    // Try not to use:
-    // - imperative style loops (for/while)
-    // - additional variables
-    // For an extra challenge, don't use:
-    // - recursion
+    // TODO: Complete esta função para retornar o fatorial de `num`, que é
+    // TODO: definido como `1 * 2 * 3 * … * num`.
+    // TODO: https://en.wikipedia.org/wiki/Factorial
+    // TODO: Não use:
+    // TODO: - retornos antecipados (usando a palavra-chave `return` explicitamente)
+    // TODO: Tente não usar:
+    // TODO: - loops imperativos (for/while)
+    // TODO: - variáveis ​​adicionais
+    // TODO: Para um desafio extra, não use:
+    // TODO: - recursão
+    (1..=num).product()
 }
 
 fn main() {
