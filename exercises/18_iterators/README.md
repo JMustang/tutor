@@ -1,6 +1,6 @@
 # Iterators
 
-This section will teach you about Iterators.
+Esta seção irá ensinar você sobre iteradores.
 
 ## Further information
 
