@@ -1,19 +1,21 @@
-// In this exercise, we are given a `Vec` of `u32` called `numbers` with values
-// ranging from 0 to 99. We would like to use this set of numbers within 8
-// different threads simultaneously. Each thread is going to get the sum of
-// every eighth value with an offset.
+// Neste exercício, recebemos um `Vec` de `u32` chamado `numbers` com valores
+// variando de 0 a 99. Gostaríamos de usar este conjunto de números em 8
+// threads diferentes simultaneamente. Cada thread obterá a soma de
+// cada oitavo valor com um deslocamento.
+
 //
-// The first thread (offset 0), will sum 0, 8, 16, …
-// The second thread (offset 1), will sum 1, 9, 17, …
-// The third thread (offset 2), will sum 2, 10, 18, …
+// A primeira thread (deslocamento 0) somará 0, 8, 16, …
+// A segunda thread (deslocamento 1) somará 1, 9, 17, …
+// A terceira thread (deslocamento 2) somará 2, 10, 18, …
 // …
-// The eighth thread (offset 7), will sum 7, 15, 23, …
+// A oitava thread (deslocamento 7) somará 7, 15, 23, …
 //
-// Each thread should own a reference-counting pointer to the vector of
-// numbers. But `Rc` isn't thread-safe. Therefore, we need to use `Arc`.
+// Cada thread deve possuir um ponteiro de contagem de referências para o vetor de
+// números. Mas `Rc` não é thread-safe. Portanto, precisamos usar `Arc`.
+
 //
-// Don't get distracted by how threads are spawned and joined. We will practice
-// that later in the exercises about threads.
+// Não se distraia com a forma como as threads são criadas e unidas. Praticaremos isso mais tarde nos exercícios sobre threads.
+//
 
 // Don't change the lines below.
 #![forbid(unused_imports)]
@@ -22,14 +24,16 @@ use std::{sync::Arc, thread};
 fn main() {
     let numbers: Vec<_> = (0..100u32).collect();
 
-    // TODO: Define `shared_numbers` by using `Arc`.
+    // TODO: Defina `shared_numbers` usando `Arc`.
     // let shared_numbers = ???;
+    let shared_numbers = Arc::new(numbers);
 
     let mut join_handles = Vec::new();
 
     for offset in 0..8 {
-        // TODO: Define `child_numbers` using `shared_numbers`.
+        // TODO: Defina `child_numbers` usando `shared_numbers`.
         // let child_numbers = ???;
+        let child_numbers = Arc::clone(&shared_numbers);
 
         let handle = thread::spawn(move || {
             let sum: u32 = child_numbers.iter().filter(|&&n| n % 8 == offset).sum();

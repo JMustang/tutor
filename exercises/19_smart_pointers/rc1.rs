@@ -1,7 +1,7 @@
-// In this exercise, we want to express the concept of multiple owners via the
-// `Rc<T>` type. This is a model of our solar system - there is a `Sun` type and
-// multiple `Planet`s. The planets take ownership of the sun, indicating that
-// they revolve around the sun.
+// Neste exercício, queremos expressar o conceito de múltiplos proprietários através do
+// tipo `Rc<T>`. Este é um modelo do nosso sistema solar - existe um tipo `Sol` e
+// múltiplos `Planetas`. Os planetas assumem a propriedade do sol, indicando que
+// eles orbitam ao redor do sol.
 
 use std::rc::Rc;
 
@@ -60,17 +60,17 @@ mod tests {
         jupiter.details();
 
         // TODO
-        let saturn = Planet::Saturn(Rc::new(Sun));
+        let saturn = Planet::Saturn(Rc::clone(&sun));
         println!("reference count = {}", Rc::strong_count(&sun)); // 7 references
         saturn.details();
 
         // TODO
-        let uranus = Planet::Uranus(Rc::new(Sun));
+        let uranus = Planet::Uranus(Rc::clone(&sun));
         println!("reference count = {}", Rc::strong_count(&sun)); // 8 references
         uranus.details();
 
         // TODO
-        let neptune = Planet::Neptune(Rc::new(Sun));
+        let neptune = Planet::Neptune(Rc::clone(&sun));
         println!("reference count = {}", Rc::strong_count(&sun)); // 9 references
         neptune.details();
 

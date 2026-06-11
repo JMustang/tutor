@@ -1,29 +1,28 @@
-// At compile time, Rust needs to know how much space a type takes up. This
-// becomes problematic for recursive types, where a value can have as part of
-// itself another value of the same type. To get around the issue, we can use a
-// `Box` - a smart pointer used to store data on the heap, which also allows us
-// to wrap a recursive type.
-//
-// The recursive type we're implementing in this exercise is the "cons list", a
-// data structure frequently found in functional programming languages. Each
-// item in a cons list contains two elements: The value of the current item and
-// the next item. The last item is a value called `Nil`.
+// Em tempo de compilação, o Rust precisa saber quanto espaço um tipo ocupa. Isso
+// se torna problemático para tipos recursivos, onde um valor pode ter como parte de
+// si mesmo outro valor do mesmo tipo. Para contornar o problema, podemos usar um
+// `Box` - um ponteiro inteligente usado para armazenar dados no heap, que também nos permite
+// encapsular um tipo recursivo.
+// O tipo recursivo que estamos implementando neste exercício é a "lista cons", uma
+// estrutura de dados frequentemente encontrada em linguagens de programação funcional. Cada
+// item em uma lista cons contém dois elementos: o valor do item atual e
+// o próximo item. O último item é um valor chamado `Nil`.
 
-// TODO: Use a `Box` in the enum definition to make the code compile.
+// TODO: Use um `Box` na definição do enum para que o código seja compilado.
 #[derive(PartialEq, Debug)]
 enum List {
-    Cons(i32, List),
+    Cons(i32, Box<List>),
     Nil,
 }
 
-// TODO: Create an empty cons list.
+// TODO: Crie uma lista de contras vazia.
 fn create_empty_list() -> List {
-    todo!()
+    List::Nil
 }
 
-// TODO: Create a non-empty cons list.
+// TODO: Crie uma lista de contras não vazia.
 fn create_non_empty_list() -> List {
-    todo!()
+    List::Cons(1, Box::new(List::Cons(2, Box::new(List::Nil))))
 }
 
 fn main() {

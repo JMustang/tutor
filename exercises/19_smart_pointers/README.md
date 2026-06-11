@@ -1,7 +1,7 @@
 # Smart Pointers
 
-In Rust, smart pointers are variables that contain an address in memory and reference some other data, but they also have additional metadata and capabilities.
-Smart pointers in Rust often own the data they point to, while references only borrow data.
+Em Rust, ponteiros inteligentes são variáveis ​​que contêm um endereço na memória e fazem referência a outros dados, mas também possuem metadados e capacidades adicionais.
+Ponteiros inteligentes em Rust geralmente são proprietários dos dados para os quais apontam, enquanto referências apenas tomam dados emprestados.
 
 ## Further Information
 
