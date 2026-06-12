@@ -1,7 +1,7 @@
 # Threads
 
-In most current operating systems, an executed program's code is run in a process, and the operating system manages multiple processes at once.
-Within your program, you can also have independent parts that run simultaneously. The features that run these independent parts are called threads.
+Na maioria dos sistemas operacionais atuais, o código de um programa executado é rodado em um processo, e o sistema operacional gerencia vários processos simultaneamente.
+Dentro do seu programa, você também pode ter partes independentes que são executadas simultaneamente. Os recursos que executam essas partes independentes são chamados de threads.
 
 ## Further information
 

@@ -1,7 +1,7 @@
-// This program spawns multiple threads that each runs for at least 250ms, and
-// each thread returns how much time it took to complete. The program should
-// wait until all the spawned threads have finished and should collect their
-// return values into a vector.
+// Este programa cria várias threads, cada uma executada por pelo menos 250 ms, e
+// cada thread retorna o tempo que levou para ser concluída. O programa deve
+// esperar até que todas as threads criadas tenham terminado e coletar seus
+// valores de retorno em um vetor.
 
 use std::{
     thread,
@@ -22,8 +22,9 @@ fn main() {
 
     let mut results = Vec::new();
     for handle in handles {
-        // TODO: Collect the results of all threads into the `results` vector.
-        // Use the `JoinHandle` struct which is returned by `thread::spawn`.
+        // TODO: Coletar os resultados de todas as threads no vetor `results`.
+        // TODO: Usar a struct `JoinHandle` retornada por `thread::spawn`.
+        results.push(handle.join().unwrap());
     }
 
     if results.len() != 10 {
