@@ -5,6 +5,6 @@ macro_rules! my_macro {
 }
 
 fn main() {
-    // TODO: Fix the macro call.
-    my_macro();
+    // TODO: Corrija a chamada da macro.
+    my_macro!();
 }
