@@ -1,23 +1,22 @@
-# Type conversions
+# Conversões de tipo
 
-Rust offers a multitude of ways to convert a value of a given type into another type.
+Rust oferece diversas maneiras de converter um valor de um determinado tipo em outro.
 
-The simplest form of type conversion is a type cast expression. It is denoted with the binary operator `as`. For instance, `println!("{}", 1 + 1.0);` would not compile, since `1` is an integer while `1.0` is a float. However, `println!("{}", 1 as f32 + 1.0)` should compile. The exercise [`using_as`](using_as.rs) tries to cover this.
+A forma mais simples de conversão de tipo é uma expressão de conversão de tipo. Ela é denotada pelo operador binário `as`. Por exemplo, `println!("{}", 1 + 1.0);` não seria compilado, pois `1` é um inteiro enquanto `1.0` é um float. No entanto, `println!("{}", 1 as f32 + 1.0)` deve ser compilado. O exercício [`using_as`](using_as.rs) tenta abordar esse assunto.
 
-Rust also offers traits that facilitate type conversions upon implementation. These traits can be found under the [`convert`](https://doc.rust-lang.org/std/convert/index.html) module.
-The traits are the following:
+Rust também oferece traits que facilitam as conversões de tipo na implementação. Essas traits podem ser encontradas no módulo [`convert`](https://doc.rust-lang.org/std/convert/index.html).
 
-- `From` and `Into` covered in [`from_into`](from_into.rs)
-- `TryFrom` and `TryInto` covered in [`try_from_into`](try_from_into.rs)
-- `AsRef` and `AsMut` covered in [`as_ref_mut`](as_ref_mut.rs)
+As traits são as seguintes:
 
-Furthermore, the `std::str` module offers a trait called [`FromStr`](https://doc.rust-lang.org/std/str/trait.FromStr.html) which helps with converting strings into target types via the `parse` method on strings. If properly implemented for a given type `Person`, then `let p: Person = "Mark,20".parse().unwrap()` should both compile and run without panicking.
+- `From` e `Into`, abordadas em [`from_into`](from_into.rs)
+- `TryFrom` e `TryInto`, abordadas em [`try_from_into`](try_from_into.rs)
+- `AsRef` e `AsMut`, abordadas em [`as_ref_mut`](as_ref_mut.rs)
 
-These should be the main ways ***within the standard library*** to convert data into your desired types.
+Além disso, o módulo `std::str` oferece uma trait chamada [`FromStr`](https://doc.rust-lang.org/std/str/trait.FromStr.html) que auxilia na conversão de strings para os tipos desejados através do método `parse` em strings. Se implementado corretamente para um dado tipo `Person`, então `let p: Person = "Mark,20".parse().unwrap()` deve compilar e executar sem erros.
 
-## Further information
+Essas devem ser as principais maneiras ***dentro da biblioteca padrão*** de converter dados para os tipos desejados. ## Informações adicionais
 
-These are not directly covered in the book, but the standard library has a great documentation for it.
+Esses tópicos não são abordados diretamente no livro, mas a biblioteca padrão possui uma excelente documentação sobre eles.
 
 - [conversions](https://doc.rust-lang.org/std/convert/index.html)
 - [`FromStr` trait](https://doc.rust-lang.org/std/str/trait.FromStr.html)
