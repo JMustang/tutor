@@ -1,7 +1,7 @@
-// `TryFrom` is a simple and safe type conversion that may fail in a controlled
-// way under some circumstances. Basically, this is the same as `From`. The main
-// difference is that this should return a `Result` type instead of the target
-// type itself. You can read more about it in the documentation:
+// `TryFrom` é uma conversão de tipo simples e segura que pode falhar de forma controlada
+// em algumas circunstâncias. Basicamente, é o mesmo que `From`. A principal
+// diferença é que deve retornar um tipo `Result` em vez do próprio tipo de destino.
+// Você pode ler mais sobre isso na documentação:
 // https://doc.rust-lang.org/std/convert/trait.TryFrom.html
 
 #![allow(clippy::useless_vec)]
@@ -14,36 +14,69 @@ struct Color {
     blue: u8,
 }
 
-// We will use this error type for the `TryFrom` conversions.
+// Usaremos esse tipo de erro para as conversões `TryFrom`.
 #[derive(Debug, PartialEq)]
 enum IntoColorError {
-    // Incorrect length of slice
+    // Comprimento incorreto da fatia
     BadLen,
-    // Integer conversion error
+    // Erro de conversão de número inteiro
     IntConversion,
 }
 
-// TODO: Tuple implementation.
-// Correct RGB color values must be integers in the 0..=255 range.
+// TODO: Implementação de tupla.
+// TODO: Os valores de cor RGB corretos devem ser inteiros no intervalo de 0 a 255.
 impl TryFrom<(i16, i16, i16)> for Color {
     type Error = IntoColorError;
 
-    fn try_from(tuple: (i16, i16, i16)) -> Result<Self, Self::Error> {}
+    fn try_from(tuple: (i16, i16, i16)) -> Result<Self, Self::Error> {
+        let (r, g, b) = tuple;
+        if r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255 {
+            return Err(IntoColorError::IntConversion);
+        }
+        Ok(Color {
+            red: r as u8,
+            green: g as u8,
+            blue: b as u8,
+        })
+    }
 }
 
-// TODO: Array implementation.
+// TODO: Implementação de array.
 impl TryFrom<[i16; 3]> for Color {
     type Error = IntoColorError;
 
-    fn try_from(arr: [i16; 3]) -> Result<Self, Self::Error> {}
+    fn try_from(arr: [i16; 3]) -> Result<Self, Self::Error> {
+        let [r, g, b] = arr;
+        if r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255 {
+            return Err(IntoColorError::IntConversion);
+        }
+        Ok(Color {
+            red: r as u8,
+            green: g as u8,
+            blue: b as u8,
+        })
+    }
 }
 
-// TODO: Slice implementation.
-// This implementation needs to check the slice length.
+// TODO: Implementação de fatiamento.
+// TODO: Esta implementação precisa verificar o comprimento da fatia.
 impl TryFrom<&[i16]> for Color {
     type Error = IntoColorError;
 
-    fn try_from(slice: &[i16]) -> Result<Self, Self::Error> {}
+    fn try_from(slice: &[i16]) -> Result<Self, Self::Error> {
+        if slice.len() != 3 {
+            return Err(IntoColorError::BadLen);
+        }
+        let [r, g, b] = [slice[0], slice[1], slice[2]];
+        if r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255 {
+            return Err(IntoColorError::IntConversion);
+        }
+        Ok(Color {
+            red: r as u8,
+            green: g as u8,
+            blue: b as u8,
+        })
+    }
 }
 
 fn main() {

@@ -1,8 +1,8 @@
-// This is similar to the previous `from_into` exercise. But this time, we'll
-// implement `FromStr` and return errors instead of falling back to a default
-// value. Additionally, upon implementing `FromStr`, you can use the `parse`
-// method on strings to generate an object of the implementor type. You can read
-// more about it in the documentation:
+// Isto é semelhante ao exercício anterior com `from_into`. Mas desta vez, vamos
+// implementar `FromStr` e retornar erros em vez de recorrer a um valor padrão.
+// Além disso, ao implementar `FromStr`, você pode usar o método `parse`
+// em strings para gerar um objeto do tipo implementador. Você pode ler
+// mais sobre isso na documentação:
 // https://doc.rust-lang.org/std/str/trait.FromStr.html
 
 use std::num::ParseIntError;
@@ -14,34 +14,51 @@ struct Person {
     age: u8,
 }
 
-// We will use this error type for the `FromStr` implementation.
+// Usaremos esse tipo de erro para a implementação de `FromStr`.
 #[derive(Debug, PartialEq)]
 enum ParsePersonError {
-    // Incorrect number of fields
+    // Número incorreto de campos
     BadLen,
     // Empty name field
     NoName,
-    // Wrapped error from parse::<u8>()
+    // Erro encapsulado de parse::<u8>()
     ParseInt(ParseIntError),
 }
 
-// TODO: Complete this `FromStr` implementation to be able to parse a `Person`
-// out of a string in the form of "Mark,20".
-// Note that you'll need to parse the age component into a `u8` with something
-// like `"4".parse::<u8>()`.
-//
-// Steps:
-// 1. Split the given string on the commas present in it.
-// 2. If the split operation returns less or more than 2 elements, return the
-//    error `ParsePersonError::BadLen`.
-// 3. Use the first element from the split operation as the name.
-// 4. If the name is empty, return the error `ParsePersonError::NoName`.
-// 5. Parse the second element from the split operation into a `u8` as the age.
-// 6. If parsing the age fails, return the error `ParsePersonError::ParseInt`.
+// TODO: Complete esta implementação de `FromStr` para poder analisar um `Person`
+// de uma string no formato "Mark,20".
+// Observe que você precisará analisar o componente de idade em um `u8` com algo
+// como `"4".parse::<u8>()`.
+// Etapas:
+// 1. Divida a string fornecida pelas vírgulas presentes nela.
+// 2. Se a operação de divisão retornar menos ou mais de 2 elementos, retorne o
+// erro `ParsePersonError::BadLen`.
+// 3. Use o primeiro elemento da operação de divisão como o nome.
+// 4. Se o nome estiver vazio, retorne o erro `ParsePersonError::NoName`.
+// 5. Analise o segundo elemento da operação de divisão em um `u8` como a idade.
+// // 6. Se a análise da idade falhar, retorne o erro `ParsePersonError::ParseInt`.
 impl FromStr for Person {
     type Err = ParsePersonError;
 
-    fn from_str(s: &str) -> Result<Self, Self::Err> {}
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        let parts: Vec<&str> = s.split(',').collect();
+        if parts.len() != 2 {
+            return Err(ParsePersonError::BadLen);
+        }
+
+        let name = parts[0].trim();
+        if name.is_empty() {
+            return Err(ParsePersonError::NoName);
+        }
+
+        let age_str = parts[1].trim();
+        let age = age_str.parse::<u8>().map_err(ParsePersonError::ParseInt)?;
+
+        Ok(Person {
+            name: name.to_string(),
+            age,
+        })
+    }
 }
 
 fn main() {
