@@ -1,24 +1,25 @@
-// This quiz tests:
-// - Generics
+// Este teste avalia:
+// - Genéricos
 // - Traits
 //
-// An imaginary magical school has a new report card generation system written
-// in Rust! Currently, the system only supports creating report cards where the
-// student's grade is represented numerically (e.g. 1.0 -> 5.5). However, the
-// school also issues alphabetical grades (A+ -> F-) and needs to be able to
-// print both types of report card!
-//
-// Make the necessary code changes in the struct `ReportCard` and the impl
-// block to support alphabetical report cards in addition to numerical ones.
+// Uma escola mágica imaginária tem um novo sistema de geração de boletins escrito
+// em Rust! Atualmente, o sistema só suporta a criação de boletins onde a
+// nota do aluno é representada numericamente (ex.: 1.0 -> 5.5). No entanto, a
+// escola também emite notas alfabéticas (A+ -> F-) e precisa ser capaz de
+// imprimir ambos os tipos de boletim!
 
-// TODO: Adjust the struct as described above.
+//
+// Faça as alterações de código necessárias na struct `ReportCard` e no bloco de implementação
+// para suportar boletins alfabéticos, além dos numéricos.
+
+// TODO: Ajuste a struct conforme descrito acima.
 struct ReportCard {
-    grade: f32,
+    grade: String,
     student_name: String,
     student_age: u8,
 }
 
-// TODO: Adjust the impl block as described above.
+// TODO: Ajuste o bloco de implementação conforme descrito acima.
 impl ReportCard {
     fn print(&self) -> String {
         format!(
@@ -39,7 +40,7 @@ mod tests {
     #[test]
     fn generate_numeric_report_card() {
         let report_card = ReportCard {
-            grade: 2.1,
+            grade: "2.1".to_string(),
             student_name: "Tom Wriggle".to_string(),
             student_age: 12,
         };
@@ -52,7 +53,7 @@ mod tests {
     #[test]
     fn generate_alphabetic_report_card() {
         let report_card = ReportCard {
-            grade: "A+",
+            grade: "A+".to_string(),
             student_name: "Gary Plotter".to_string(),
             student_age: 11,
         };

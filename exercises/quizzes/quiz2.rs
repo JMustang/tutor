@@ -1,21 +1,22 @@
-// This is a quiz for the following sections:
+// Este é um teste para as seguintes seções:
 // - Strings
-// - Vecs
-// - Move semantics
-// - Modules
+// - Vetores
+// - Semântica de movimentação
+// - Módulos
 // - Enums
 //
-// Let's build a little machine in the form of a function. As input, we're going
-// to give a list of strings and commands. These commands determine what action
-// is going to be applied to the string. It can either be:
-// - Uppercase the string
-// - Trim the string
-// - Append "bar" to the string a specified amount of times
+// Vamos construir uma pequena máquina na forma de uma função. Como entrada, vamos
+// fornecer uma lista de strings e comandos. Esses comandos determinam qual ação
+// será aplicada à string. Ela pode ser:
+// - Converter a string para maiúsculas
+// - Remover os espaços em branco da string
+// - Adicionar "barra" à string um número específico de vezes
 //
-// The exact form of this will be:
-// - The input is going to be a Vector of 2-length tuples,
-//   the first element is the string, the second one is the command.
-// - The output element is going to be a vector of strings.
+// A forma exata disso será:
+// - A entrada será um vetor de tuplas de dois elementos,
+// onde o primeiro elemento é a string e o segundo é o comando.
+
+// - O elemento de saída será um vetor de strings.
 
 enum Command {
     Uppercase,
@@ -26,8 +27,18 @@ enum Command {
 mod my_module {
     use super::Command;
 
-    // TODO: Complete the function as described above.
-    // pub fn transformer(input: ???) -> ??? { ??? }
+    // TODO: Complete a função conforme descrito acima.
+    // TODO: pub fn transformer(input: ???) -> ??? { ??? }
+    pub fn transformer(input: Vec<(String, Command)>) -> Vec<String> {
+        input
+            .into_iter()
+            .map(|(string, command)| match command {
+                Command::Uppercase => string.to_uppercase(),
+                Command::Trim => string.trim().to_string(),
+                Command::Append(times) => string + &"bar".repeat(times),
+            })
+            .collect()
+    }
 }
 
 fn main() {
@@ -36,9 +47,10 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
-    // TODO: What do we need to import to have `transformer` in scope?
-    // use ???;
+    // TODO: O que precisamos importar para ter `transformer` no escopo?
+    // TODO: use ???;
     use super::Command;
+    use super::my_module::transformer;
 
     #[test]
     fn it_works() {

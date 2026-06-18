@@ -1,31 +1,39 @@
-// This is a quiz for the following sections:
-// - Variables
-// - Functions
-// - If
+// Este é um questionário para as seguintes seções:
+// - Variáveis
+// - Funções
+// - Se
 //
-// Mary is buying apples. The price of an apple is calculated as follows:
-// - An apple costs 2 rustbucks.
-// - However, if Mary buys more than 40 apples, the price of each apple in the
-// entire order is reduced to only 1 rustbuck!
+// Maria está comprando maçãs. O preço de uma maçã é calculado da seguinte forma:
+// - Uma maçã custa 2 rustbucks.
+// - No entanto, se Maria comprar mais de 40 maçãs, o preço de cada maçã em
+// todo o pedido é reduzido para apenas 1 rustbuck!
 
-// TODO: Write a function that calculates the price of an order of apples given
-// the quantity bought.
-// fn calculate_price_of_apples(???) -> ??? { ??? }
+// TODO: Escreva uma função que calcule o preço de um pedido de maçãs dada
+// a quantidade comprada.
+
+// fn calcular_preço_de_maçãs(???) -> ??? { ??? }
+fn calcular_preço_de_maçãs(quantidade: u32) -> u32 {
+    if quantidade > 40 {
+        quantidade
+    } else {
+        quantidade * 2
+    }
+}
 
 fn main() {
     // You can optionally experiment here.
 }
 
-// Don't change the tests!
+// Não mude esse teste! Ele é usado para verificar se sua função está correta. Se o teste falhar, ele mostrará uma mensagem de erro indicando o que deu errado.
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
     fn verify_test() {
-        assert_eq!(calculate_price_of_apples(35), 70);
-        assert_eq!(calculate_price_of_apples(40), 80);
-        assert_eq!(calculate_price_of_apples(41), 41);
-        assert_eq!(calculate_price_of_apples(65), 65);
+        assert_eq!(calcular_preço_de_maçãs(35), 70);
+        assert_eq!(calcular_preço_de_maçãs(40), 80);
+        assert_eq!(calcular_preço_de_maçãs(41), 41);
+        assert_eq!(calcular_preço_de_maçãs(65), 65);
     }
 }
